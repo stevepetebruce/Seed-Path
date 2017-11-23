@@ -1,0 +1,19 @@
+extends layout
+
+include mixins/_storeCard
+
+block content
+  .inner
+    if (tab)
+      h2 Sow in #{tab}
+    else
+      h2 When to Sow
+    ul.tags
+      each f in final
+        li.tag
+          a.tag__link(href=`/sowing/${f._id}` class=(f._id === tab ? 'tag__link--active' : ''))
+            span.tag__text= f._id
+            span.tag__count= f.count
+    .stores
+      each store in stores
+        +storeCard(store)

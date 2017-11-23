@@ -1,0 +1,47 @@
+mixin storeForm(store = {})
+  form(action=`/add/${store._id ||''}` method="POST" class="card" enctype="multipart/form-data")
+
+    label(for="name") Name
+    input(type="text" name="name" value= store.name)
+
+    label(for="description") Description
+    textarea(name="description")= store.description
+
+    label(for="tip") Top Tip
+    textarea(name="tip")= store.tip
+
+    //- image upload
+    label(for="photo") Upload Image
+      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      if store.photo
+        img(src=`/uploads/${store.photo}`, alt=store.name width=200)
+
+
+    label(for="family") Vegetable Type
+    - const vegFamily = ['Carrot', 'Cabbage', 'Potato' , 'Onion' , 'Pumpkin']
+    - const families = store.family || []
+    ul.tags
+      each fchoice in vegFamily
+        .tag.tag__choice
+          input(type="radio" id=fchoice value=fchoice name="family" checked=(families.includes(fchoice)))
+          label(for=family) #{fchoice}
+
+    label(for="sow") Sow
+    - const choices = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    - const sowing = store.sow || []
+    ul.tags
+      each choice in choices
+        .tag.tag__choice
+          input(type="checkbox" id=choice value=choice name="sow" checked=(sowing.includes(choice)))
+          label(for=choice) #{choice}
+
+    label(for="harvest") Harvest
+    - const hchoices = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    - const harvesting = store.harvest || []
+    ul.tags
+      each hchoice in hchoices
+        .tag.tag__choice
+          input(type="checkbox" id=hchoice+"1" value=hchoice name="harvest" checked=(harvesting.includes(hchoice)))
+          label(for=hchoice+"1") #{hchoice}
+
+    input(type="submit" value="Submit" class="button")

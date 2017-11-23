@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${store.photo || 'store.png'}`)
+      h2.title.title--single
+        a(href=`/store/${store.slug}`) #{store.name}
+
+  .single__details.inner
+
+    - const months = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    - const sowing = store.sow || []
+    - const harvesting = store.harvest || []
+
+    .months
+      p Sow
+      each month in months
+        .month.month__choice
+          if sowing.includes(month)
+            b #{month}
+          else
+            p #{month}
+
+    .months
+      p Harvest
+      each month in months
+        .month.month__choice
+          if harvesting.includes(month)
+            b #{month}
+          else
+            p #{month}
+
+    h3 #{store.name}
+    p #{store.description}
+
+    if store.tip
+      p #{store.tip}
+

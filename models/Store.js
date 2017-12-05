@@ -24,7 +24,12 @@ const storeSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  photo: String
+  photo: String,
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: 'Please supply author'
+  }
 });
 
 // mongoose pre save - pass in slug to storeSchema

@@ -30,15 +30,18 @@ exports.isLoggedIn = (req, res, next) => {
 
 exports.forgot = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
+  // user exists?
   if (!user) {
-    req.flash('error', 'No account found with this address');
+    req.flash('error', 'You have been emailed a new reset link');
     return res.redirect('/login');
   }
+  // add tokens to user
   user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
   user.resetPasswordExpires = Date.now() + 3600000; //plus one hour
   await user.save();
 
-  const resetURL = `http://{$request.headers.host}/account/reset/{$user.resetPasswordToken}`;
+  const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
+  console.log(resetURL);
   await mail.send({
     user: user,
     subject: 'Reset Password',
@@ -82,8 +85,8 @@ exports.updatePassword = async (req, res) => {
   const setPassword = promisify(user.setPassword, user)
   await setPassword(req.body.password);
   //Remove tokens
-  resetPasswordToken: undefined;
-  resetPasswordExpires: undefined;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
 
   const updatedUser = await user.save();
   await req.login(updatedUser);

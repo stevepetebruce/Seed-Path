@@ -69,7 +69,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// After allllll that above middleware, we finally handle our own routes!
+// After alll that above middleware, we finally handle our own routes!
 app.use('/', routes);
 
 // If that above routes didnt work, we 404 them and forward to error handler

@@ -8,7 +8,7 @@ block content
         a(href=`/store/${store.slug}`) #{store.name}
 
   .single__details.inner
-
+    pre= h.dump(store)
     - const months = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     - const sowing = store.sow || []
     - const harvesting = store.harvest || []

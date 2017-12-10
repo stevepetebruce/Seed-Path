@@ -32,6 +32,12 @@ const storeSchema = new mongoose.Schema({
   }
 });
 
+//mongoose indexs
+storeSchema.index({
+  name: 'text',
+  description: 'text'
+});
+
 // mongoose pre save - pass in slug to storeSchema
 storeSchema.pre('save', async function(next) {
   if (!this.isModified('name')) {

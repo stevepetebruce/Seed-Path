@@ -97,8 +97,6 @@ exports.getStoresBySow = async (req, res) => {
   const storesPromise = Store.find({sow: tabQuery}); //duel promise
   const [sowing, stores] = await Promise.all([sowingPromise, storesPromise]);
 
-
-
   const countMap = {};
   sowing.forEach((a) => {
     countMap[a._id] = a.count
@@ -121,8 +119,6 @@ exports.getStoresByHarvest = async (req, res) => {
   const storesPromise = Store.find({harvest: tabQuery}); //duel promise
   const [harvesting, stores] = await Promise.all([harvestPromise, storesPromise]);
 
-
-
   const countMap = {};
   harvesting.forEach((a) => {
     countMap[a._id] = a.count
@@ -132,4 +128,26 @@ exports.getStoresByHarvest = async (req, res) => {
   //res.json(stores);
 
   res.render('harvestList', { final: final, stores: stores, title: 'When to Harvest', tab });
+}
+
+exports.searchStores = async (req, res) => {
+
+  const stores = await Store
+  // Find stores
+  .find(
+    {
+      $text: { $search: req.query.q }
+    }, {
+    // score search
+      score: { $meta: 'textScore' }
+    }
+  )
+  // sort score
+  .sort({
+      score: { $meta: 'textScore' }
+  })
+  // limit to 8
+  .limit(8);
+
+  res.json(stores);
 }

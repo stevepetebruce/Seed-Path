@@ -25,6 +25,7 @@ function typeAhead(search) {
       return;
     }
     searchResults.style.display = 'block';
+    searchResults.innerHTML = '';
 
     axios
       .get(`api/search?q=${this.value}`)
@@ -32,6 +33,9 @@ function typeAhead(search) {
         if (res.data.length) {
           searchResults.innerHTML = displaySearch(res.data);
         }
+      })
+      .catch(error => {
+        console.log(error);
       });
   });
 

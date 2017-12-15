@@ -56,7 +56,7 @@ router.post('/account/reset/:token',
 
 router.get('/logout', authController.logout);
 
-// APi
+// API
 router.get('/api/search', catchErrors(storeController.searchStores));
 
 module.exports = router;

@@ -57,12 +57,12 @@ function typeAhead(search) {
     let next;
 
     if (e.keyCode === 40 && current) {
-      // keydown
+      // down
       next = current.nextElementSibling || items[0];  //nextElementSibling = element immediately following parent's child in list
     } else if (e.keyCode === 40) {
       next = items[0];
     } else if (e.keyCode === 38 && current) {
-      // keyup
+      // up
       next = current.previousElementSibling || items[items.length - 1];
     } else if (e.keyCode === 38) {
       next = items[items.length - 1];

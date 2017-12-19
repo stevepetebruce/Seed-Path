@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
+const striptags = require('striptags');
 
 const storeSchema = new mongoose.Schema({
   name: {
@@ -38,6 +39,14 @@ storeSchema.index({
   description: 'text'
 });
 
+// mongoose pre save - Sanitize form
+storeSchema.pre('save', async function(next) {
+  this.name = striptags(this.name);
+  this.description = striptags(this.description);
+  this.tip = striptags(this.tip);
+  next();
+});
+
 // mongoose pre save - pass in slug to storeSchema
 storeSchema.pre('save', async function(next) {
   if (!this.isModified('name')) {
@@ -45,7 +54,6 @@ storeSchema.pre('save', async function(next) {
     return;
   }
   this.slug = slug(this.name);
-
   //Make sure two slugs are not the same
   const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
   const storesWithSlug = await this.constructor.find({ slug: slugRegEx });

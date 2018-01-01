@@ -58,5 +58,6 @@ router.get('/logout', authController.logout);
 
 // API
 router.get('/api/search', catchErrors(storeController.searchStores));
+router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore))
 
 module.exports = router;

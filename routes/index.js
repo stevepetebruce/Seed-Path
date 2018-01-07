@@ -45,6 +45,7 @@ router.post('/register',
   authController.login
 );
 
+
 router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount));
 router.post('/account/forgot', catchErrors(authController.forgot));
@@ -55,9 +56,10 @@ router.post('/account/reset/:token',
 );
 
 router.get('/logout', authController.logout);
+router.get('/hearts', catchErrors(storeController.getHearts));
 
 // API
 router.get('/api/search', catchErrors(storeController.searchStores));
-router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore))
+router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore));
 
 module.exports = router;

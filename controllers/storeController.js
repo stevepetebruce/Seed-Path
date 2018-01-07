@@ -160,3 +160,12 @@ exports.heartStore = async (req, res) => {
   );
   res.json(user);
 }
+
+exports.getHearts = async (req, res) => {
+  // retrieve hearts
+  const hearts = await Store.find({
+    _id: { $in: req.user.hearts }
+  }
+  );
+  res.render('stores', { title: 'Your Favourites', stores: hearts });
+}

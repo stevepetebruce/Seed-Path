@@ -3,6 +3,7 @@ const router = express.Router();
 const storeController = require('../controllers/storeController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const commentController = require('../controllers/commentController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 
@@ -45,18 +46,17 @@ router.post('/register',
   authController.login
 );
 
-
 router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount));
 router.post('/account/forgot', catchErrors(authController.forgot));
 router.get('/account/reset/:token', catchErrors(authController.resetPassword));
-router.post('/account/reset/:token',
-  authController.confirmedPasswords,
-  catchErrors(authController.updatePassword)
+router.post('/account/reset/:token', authController.confirmedPasswords, catchErrors(authController.updatePassword)
 );
 
 router.get('/logout', authController.logout);
-router.get('/hearts', catchErrors(storeController.getHearts));
+router.get('/hearts', authController.isLoggedIn, catchErrors(storeController.getHearts));
+
+router.post('/comments/:id', authController.isLoggedIn, catchErrors(commentController.addComment));
 
 // API
 router.get('/api/search', catchErrors(storeController.searchStores));

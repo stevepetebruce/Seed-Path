@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/_commentForm
+
 block content
   .single
     .single__hero
@@ -36,3 +38,5 @@ block content
     if store.tip
       p #{store.tip}
 
+    if user
+      +commentForm(store)

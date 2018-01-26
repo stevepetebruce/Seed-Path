@@ -27,6 +27,15 @@ const commentSchema = new mongoose.Schema({
   }
 });
 
+// populate author details to author.id in commentSchema
+function autoPopulate (next) {
+  this.populate('author');
+  next();
+}
+commentSchema.pre('find', autoPopulate);
+commentSchema.pre('findOne', autoPopulate);
+
+
 
 
 module.exports = mongoose.model('Comment', commentSchema);

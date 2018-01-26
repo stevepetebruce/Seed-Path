@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_commentForm
+include mixins/_comment
 
 block content
   .single
@@ -34,9 +35,14 @@ block content
 
     h3 #{store.name}
     p #{store.description}
+    input.button(type="submit" value="Add a comment or tip" onclick="window.location='#commentform'")
 
-    if store.tip
-      p #{store.tip}
+    if store.comments
+      .reviews
+        each c in store.comments
+          .review
+            +comment(c)
 
     if user
       +commentForm(store)
+

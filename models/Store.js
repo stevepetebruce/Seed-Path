@@ -31,6 +31,9 @@ const storeSchema = new mongoose.Schema({
     ref: 'User',
     required: 'Please supply author'
   }
+}, {
+  toObject: { virtuals: true },
+  toJSON: { virtuals: true }
 });
 
 //mongoose indexs
@@ -78,5 +81,12 @@ storeSchema.statics.getHarvestList = function() {
     { $group: { _id: '$harvest', count: { $sum: 1 } } }
   ]);
 }
+
+// relation: comments store === stores id
+storeSchema.virtual('comments', {
+  ref: 'Comment', // what mongoose.model to link?
+  localField: '_id', // which field in the store schema?
+  foreignField: 'store', // which field in the comment schema?
+})
 
 module.exports = mongoose.model('Store', storeSchema);

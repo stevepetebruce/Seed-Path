@@ -1,0 +1,11 @@
+mixin comment(c)
+
+  .review__header
+    .review__author
+      img.avatar(src=c.author.gravatar)
+      p= c.author.name
+    .review__stars(title=`Rated ${c.rating} out of 5 stars` )
+      =`★`.repeat(c.rating)
+      =`☆`.repeat(5-c.rating)
+  .review__body
+    p= c.text

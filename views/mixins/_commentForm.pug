@@ -1,6 +1,6 @@
 mixin commentForm(store)
-  form.reviewer(action=`/comments/${store._id}` method="POST")
-    textarea(name="text" placeholder="Add your tips and comments here...")
+  form.reviewer#commentform(action=`/comments/${store._id}` method="POST")
+    textarea(name="text" placeholder="Add your tips and comments and rating here...")
     .reviewer__meta
       .reviewer__stars
         each num in [5,4,3,2,1]

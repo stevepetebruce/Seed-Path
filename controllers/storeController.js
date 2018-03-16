@@ -78,7 +78,7 @@ exports.updateStore = async (req, res) => {
 };
 
 exports.viewStore = async (req, res, next) => {
-  const store = await Store.findOne({ slug: req.params.slug }).populate('author comments');
+  const store = await Store.findOne({ slug: req.params.slug }).populate('author');
   if (!store){
     next();
    return;
@@ -168,4 +168,10 @@ exports.getHearts = async (req, res) => {
   }
   );
   res.render('stores', { title: 'Your Favourites', stores: hearts });
+}
+
+
+exports.getTopRating = async (req, res) => {
+  const stores = await Store.getTopRating();  // getTopRating() function in models/stores.js
+  res.render('topRating', { stores, title: 'Top Ratings' })
 }

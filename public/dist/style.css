@@ -571,7 +571,7 @@ label {
 .flash {
   background: white;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  margin-bottom: 2rem;
+  margin: 2rem;
   padding: 2rem;
   position: relative;
   z-index: 1;
@@ -741,7 +741,7 @@ label {
   .store--wide {
     width: 100%; }
   .store__details {
-    padding: 2rem; }
+    padding: 2rem 2rem 0 2rem; }
     .store__details p {
       line-height: 1.2;
       margin-bottom: 0; }
@@ -752,17 +752,29 @@ label {
     .store {
       width: 100%; } }
 
-.store__actions {
+.store__img {
   position: relative;
   z-index: 2;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2);
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   padding-top: 10px;
   padding-bottom: 20px;
   display: -ms-flexbox;
   display: flex;
-  color: white;
+  color: black;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around; }
+
+.store__actions {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  padding-top: 10px;
+  display: -ms-flexbox;
+  display: flex;
+  color: black;
   -ms-flex-align: center;
       align-items: center;
   -ms-flex-pack: distribute;
@@ -772,7 +784,7 @@ label {
   font-size: 10px; }
   .store__action svg {
     width: 25px;
-    fill: white; }
+    fill: black; }
   .store__action--edit a {
     border-bottom: 0; }
 
@@ -972,7 +984,7 @@ label {
     top: 0; }
   .heart__button svg {
     width: 25px;
-    fill: white; }
+    fill: black; }
   .heart__button--hearted svg {
     fill: red; }
   .heart__button--float:after {

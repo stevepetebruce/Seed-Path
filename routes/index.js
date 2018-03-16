@@ -58,6 +58,8 @@ router.get('/hearts', authController.isLoggedIn, catchErrors(storeController.get
 
 router.post('/comments/:id', authController.isLoggedIn, catchErrors(commentController.addComment));
 
+router.get('/top', catchErrors(storeController.getTopRating));
+
 // API
 router.get('/api/search', catchErrors(storeController.searchStores));
 router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore));

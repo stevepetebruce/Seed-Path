@@ -1,7 +1,6 @@
 mixin registerForm()
 
   form.form(action="/register" method="POST")
-    pre=h.dump(user)
     label(for="name") Name
     input(type="text" name="name")
     label(for="email") Email

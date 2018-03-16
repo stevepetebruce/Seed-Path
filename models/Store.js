@@ -81,10 +81,40 @@ storeSchema.statics.getHarvestList = function() {
     { $group: { _id: '$harvest', count: { $sum: 1 } } }
   ]);
 }
+// traditional function because 'this' is used
+storeSchema.statics.getTopRating = function() {
+  return this.aggregate([
+    // look u stores and populate their comments
+    { $lookup: {
+      from: 'comments',
+      localField: '_id',
+      foreignField: 'store',
+      as: 'comments'}
+    },
+    // filter minimum 2 ratings
+    { $match: { 'comments.1': { $exists: true }}}, // second comment in comments is true
+    // Average rating
+    { $addFields:
+      { averageRating: { $avg: '$comments.rating' }} // adds 'averageRating' to schema
+    },
+    // Sort ratings highest first
+    { $sort: { averageRating: -1 }},
+    // list of 10
+    { $limit: 10 }
+  ])
+}
+// add comments to stores
+function autoPopulate(next) {
+  this.populate('comments');
+  next();
+}
+
+storeSchema.pre('find', autoPopulate);
+storeSchema.pre('findOne', autoPopulate);
 
 // relation: comments store === stores id
 storeSchema.virtual('comments', {
-  ref: 'Comment', // what mongoose.model to link?
+  ref: 'Comment', // what mongoose.model to link to
   localField: '_id', // which field in the store schema?
   foreignField: 'store', // which field in the comment schema?
 })

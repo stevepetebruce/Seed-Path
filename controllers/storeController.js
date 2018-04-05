@@ -123,11 +123,28 @@ exports.getStoresByHarvest = async (req, res) => {
   harvesting.forEach((a) => {
     countMap[a._id] = a.count
   });
+
   // map over months to add sowing.count or 0
   const final = calendar.map((month) => ({_id: month._id, count: countMap[month._id] || 0}))
   //res.json(stores);
 
   res.render('harvestList', { final: final, stores: stores, title: 'When to Harvest', tab });
+}
+
+exports.getVegetableList = async (req, res) => {
+  const vegetables = await Store.getVegetables();
+  // vegetables in alphabetical order
+  vegetables.sort(function(a, b) {
+    let vegA = a._id.toUpperCase();
+    let vegB = b._id.toUpperCase();
+    return (vegA < vegB) ? -1 : (vegA > vegB) ? 1 : 0;
+  });
+  //res.json(vegetables);
+  res.render('vegetableList', { vegetables, title: 'Vegetables' });
+}
+
+exports.getStoresByVegetable = async (req, res) => {
+
 }
 
 exports.searchStores = async (req, res) => {

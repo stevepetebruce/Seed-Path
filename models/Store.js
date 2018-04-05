@@ -81,6 +81,12 @@ storeSchema.statics.getHarvestList = function() {
     { $group: { _id: '$harvest', count: { $sum: 1 } } }
   ]);
 }
+
+storeSchema.statics.getVegetables = function () {
+  return this.aggregate([
+    { $group: { _id: '$family', count: { $sum: 1 } } }
+  ]);
+}
 // traditional function because 'this' is used
 storeSchema.statics.getTopRating = function() {
   return this.aggregate([

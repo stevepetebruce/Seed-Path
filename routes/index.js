@@ -37,6 +37,9 @@ router.get('/sowing/:sow', catchErrors(storeController.getStoresBySow));
 router.get('/harvesting', catchErrors(storeController.getStoresByHarvest));
 router.get('/harvesting/:harvest', catchErrors(storeController.getStoresByHarvest));
 
+router.get('/vegetables', catchErrors(storeController.getVegetableList));
+router.get('/vegetables/:family', catchErrors(storeController.getStoresByVegetable));
+
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
 router.get('/register', userController.registerForm);

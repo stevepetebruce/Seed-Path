@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  .inner
+    each vegetable in vegetables
+      a(href=`/vegetables/${vegetable._id}`)
+        h3 #{vegetable._id}
+          span.small #{vegetable.count}

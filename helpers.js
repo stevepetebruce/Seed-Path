@@ -28,6 +28,7 @@ exports.menu = [
   { slug: `/sowing/${monthNow}`, title: 'Sow', icon: 'tag', },
   { slug: '/harvesting', title: 'Harvest', icon: 'tag', },
   { slug: '/top', title: 'Top', icon: 'top', },
+  { slug: '/vegetables', title: 'Type', icon: 'map', },
   { slug: '/add', title: 'Add', icon: 'add', },
-  { slug: '/map', title: 'Map', icon: 'map', },
+
 ];

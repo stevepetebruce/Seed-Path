@@ -144,7 +144,10 @@ exports.getVegetableList = async (req, res) => {
 }
 
 exports.getStoresByVegetable = async (req, res) => {
-
+  const family = req.params.family;
+  const stores = await Store.find({family: family});
+  //res.json(vegetable);
+  res.render('stores', { stores, title: family });
 }
 
 exports.searchStores = async (req, res) => {

@@ -2,7 +2,21 @@ extends layout
 
 block content
   .inner
+    - let letternav
     each vegetable in vegetables
+      if vegetable._id.charAt(0).toUpperCase() !== letternav
+        - letternav = vegetable._id.charAt(0).toUpperCase()
+        a(href=`#${letternav}`)
+          p #{vegetable._id.charAt(0).toUpperCase()}
+
+
+    - let letter
+    each vegetable in vegetables
+      if vegetable._id.charAt(0).toUpperCase() !== letter
+        - letter = vegetable._id.charAt(0).toUpperCase()
+        h3(id=letter) #{vegetable._id.charAt(0).toUpperCase()}
+
       a(href=`/vegetables/${vegetable._id}`)
-        h3 #{vegetable._id}
-          span.small #{vegetable.count}
+        p #{vegetable._id}
+      p #{vegetable.count}
+

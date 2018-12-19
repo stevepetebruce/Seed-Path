@@ -19,6 +19,7 @@ const storeSchema = new mongoose.Schema({
     trim: true
   },
   family: String,
+  sowIndoors: [String],
   sow: [String],
   harvest: [String],
   created: {

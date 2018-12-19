@@ -3,7 +3,7 @@ const Store = mongoose.model('Store');
 const User = mongoose.model('User');
 const multer = require('multer'); // file upload
 const jimp = require('jimp'); // resize image
-const uuid = require('uuid'); // unique file names
+const uuid = require('uuid'); // unique ids
 
 const multerOptions = {
   storage: multer.memoryStorage(),
@@ -22,7 +22,7 @@ exports.homePage = (req, res) => {
 };
 
 exports.addStore = (req, res) => {
-  res.render('editStore', { title: 'Add Store' });
+  res.render('editStore', { title: 'Add Vegetable' });
 };
 
 exports.upload = multer(multerOptions).single('photo');

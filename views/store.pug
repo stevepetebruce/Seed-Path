@@ -12,8 +12,19 @@ block content
 
   .single__details.inner
     - const months = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    - const sowIndoors = store.sowIndoors || []
     - const sowing = store.sow || []
     - const harvesting = store.harvest || []
+
+    if !sowIndoors.length == 0
+      .months
+        p Sow Indoors
+        each month in months
+          .month.month__choice
+            if sowIndoors.includes(month)
+              b #{month}
+            else
+              p #{month}
 
     .months
       p Sow

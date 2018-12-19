@@ -26,6 +26,15 @@ mixin storeForm(store = {})
           input(type="radio" id=fchoice value=fchoice name="family" checked=(families.includes(fchoice)))
           label(for=family) #{fchoice}
 
+    label(for="sowIndoors") Sow Indoors
+      - const indoorChoices = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      - const sowingIndoors = store.sowIndoors || []
+      ul.tags
+        each indoorChoice in indoorChoices
+          .tag.tag__choice
+            input(type="checkbox" id=indoorChoice+"2" value=indoorChoice name="sowIndoors" checked=(sowingIndoors.includes(indoorChoice)))
+            label(for=indoorChoice+"2") #{indoorChoice}
+
     label(for="sow") Sow
     - const choices = ['Jan', 'Feb', 'Mar' , 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     - const sowing = store.sow || []

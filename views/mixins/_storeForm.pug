@@ -18,7 +18,7 @@ mixin storeForm(store = {})
 
 
     label(for="family") Vegetable Type
-    - const vegFamily = ['Carrot', 'Cabbage', 'Potato' , 'Onion' , 'Pumpkin']
+    - const vegFamily = ['Root and Stem', 'Onion Family', 'Squashes and Cucumbers' , 'Pod and other Legumes' , 'Cabbages and Brassicas', 'Salads', 'Fruiting Vegetables', 'Perennial Vegetables', 'Herbs']
     - const families = store.family || []
     ul.tags
       each fchoice in vegFamily

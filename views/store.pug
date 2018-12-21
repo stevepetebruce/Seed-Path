@@ -46,6 +46,8 @@ block content
 
     h3 #{store.name}
     p #{store.description}
+    h5 Growing Instructions
+    p #{store.growingInstructions}
     if user
       input.button(type="submit" value="Add a comment or tip" onclick="window.location='#commentform'")
 

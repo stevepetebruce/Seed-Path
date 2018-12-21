@@ -13,11 +13,11 @@ body {
     width: 100%; }
 
 .inner {
-  max-width: 900px;
+  max-width: 980px;
   margin: 0 auto; }
-  @media all and (max-width: 900px) {
+  @media all and (max-width: 980px) {
     .inner {
-      padding: 2rem; } }
+      padding: 0 2rem; } }
 
 html {
   box-sizing: border-box; }
@@ -619,8 +619,8 @@ label {
   list-style: none;
   margin: 0;
   padding: 0;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   background: #303030; }
   .nav__section {
     display: -ms-flexbox;
@@ -631,8 +631,9 @@ label {
   .nav__item {
     display: -ms-flexbox;
     display: flex; }
+  .nav__routes {
+    background: #3a3a3a; }
   .nav__link {
-    background: #303030;
     color: white;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     text-transform: uppercase;
@@ -664,13 +665,13 @@ label {
       -ms-transform: none;
           transform: none; }
     .nav__link--logo svg {
-      width: 120px;
+      width: 100px;
       margin: 0; }
 
 @media all and (max-width: 1200px) {
   .nav__link {
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    padding-left: 2rem;
+    padding-right: 2rem; }
     .nav__link svg {
       width: 30px; }
     .nav__link--logo svg {
@@ -703,12 +704,14 @@ label {
         display: none; }
   .nav__item {
     width: 33.333333%; }
+  .nav__item--logo {
+    width: 100%; }
   .nav__link {
     width: 100%; }
     .nav__link svg {
-      max-width: 100%; }
+      max-width: 30%; }
     .nav__link--logo svg {
-      width: 110%; }
+      width: 90%; }
   .heart-count:before {
     content: '\2665\FE0F';
     margin-right: 1rem; } }

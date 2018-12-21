@@ -14,7 +14,7 @@ const storeSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  tip: {
+  growingInstructions: {
     type: String,
     trim: true
   },

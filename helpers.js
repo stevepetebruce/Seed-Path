@@ -8,6 +8,7 @@ const fs = require('fs');
 // Select current month on sow routing
 const moment = require('moment');
 const monthNow = moment().format("MMM");
+const monthNowFull = moment().format("MMMM");
 
 // moment.js is a handy library for displaying dates. We need this in our templates to display things like "Posted 5 minutes ago"
 exports.moment = require('moment');
@@ -24,11 +25,9 @@ exports.siteName = `SeedPath - When to sow and harvest your vegetables`;
 
 
 exports.menu = [
-  { slug: '/stores', title: 'Veg', icon: 'store', },
-  { slug: `/sowing/${monthNow}`, title: 'Sow', icon: 'tag', },
-  { slug: '/harvesting', title: 'Harvest', icon: 'tag', },
-  { slug: '/top', title: 'Top', icon: 'top', },
-  { slug: '/vegetables', title: 'Type', icon: 'map', },
-  { slug: '/add', title: 'Add', icon: 'add', },
-
+  { slug: '/stores', title: 'Vegetables', },
+  { slug: `/sowing/${monthNow}`, title: `Sow in ${monthNowFull}`, },
+  { slug: `/harvesting/${monthNow}`, title: `Harvest in ${monthNowFull}`, },
+  { slug: '/top', title: 'Favourites', },
+  { slug: '/vegetables', title: 'Crop Type', }
 ];

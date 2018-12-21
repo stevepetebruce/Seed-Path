@@ -3,7 +3,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: $black;
   &__section {
     display: flex;
@@ -14,8 +14,10 @@
   &__item {
     display: flex;
   }
+  &__routes {
+    background: lighten($black, 4%);
+  }
   &__link {
-    background: $black;
     color: white;
     border-right: 1px solid rgba(255,255,255,0.1);
     text-transform: uppercase;
@@ -49,7 +51,7 @@
         }
       }
       svg {
-        width: 120px;
+        width: 100px;
         margin: 0;
       }
     }
@@ -60,8 +62,8 @@
 @media all and (max-width: 1200px) {
   .nav {
     &__link {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
       svg {
         width: 30px;
       }
@@ -107,15 +109,18 @@
     &__item {
       width: 33.333333%;
     }
+    &__item--logo {
+      width: 100%;
+    }
     &__link {
       width: 100%;
       svg {
         // width: 5px;
-        max-width: 100%;
+        max-width: 30%;
       }
       &--logo {
         svg {
-          width:110%;
+          width:90%;
         }
       }
     }

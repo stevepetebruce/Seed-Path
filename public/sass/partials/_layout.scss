@@ -15,9 +15,9 @@ body {
 }
 
 .inner {
-  max-width:900px;
+  max-width:980px;
   margin: 0 auto;
-  @media all and (max-width: 900px) {
-    padding: 2rem;
+  @media all and (max-width: 980px) {
+    padding: 0 2rem;
   }
 }

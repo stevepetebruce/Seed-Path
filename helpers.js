@@ -29,5 +29,5 @@ exports.menu = [
   { slug: `/sowing/${monthNow}`, title: `Sow in ${monthNowFull}`, },
   { slug: `/harvesting/${monthNow}`, title: `Harvest in ${monthNowFull}`, },
   { slug: '/top', title: 'Favourites', },
-  { slug: '/vegetables', title: 'Crop Type', }
+  { slug: '/vegetables', title: 'Crop Family', }
 ];

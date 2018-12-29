@@ -48,6 +48,10 @@ block content
     p #{store.description}
     h5 Growing Instructions
     p #{store.growingInstructions}
+    h5 Types
+    if user
+      input.button(type="submit" value="Add Vegetable Type")
+    p Comments
     if user
       input.button(type="submit" value="Add a comment or tip" onclick="window.location='#commentform'")
 

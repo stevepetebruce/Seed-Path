@@ -1,0 +1,37 @@
+
+.vegetable {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: "img desc";
+  grid-gap: 20px;
+  margin-bottom: 20px;
+
+  &__image {
+    grid-area: img;
+  }
+
+  &__details {
+    grid-area: desc;
+  }
+
+  &__title {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  &__months {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .vegetable {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+            "img"
+            "desc";
+  }
+}

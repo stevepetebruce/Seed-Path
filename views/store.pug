@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_commentForm
+include mixins/_type
 include mixins/_comment
 
 block content
@@ -51,6 +52,9 @@ block content
     h5 Types
     if user
       input.button(type="submit" value="Add Vegetable Type")
+    div.types
+      .type
+        +type(t)
     p Comments
     if user
       input.button(type="submit" value="Add a comment or tip" onclick="window.location='#commentform'")

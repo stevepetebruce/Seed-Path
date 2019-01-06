@@ -51,7 +51,8 @@ block content
     p #{store.growingInstructions}
     h5 Types
     if user
-      input.button(type="submit" value="Add Vegetable Type")
+      a(href=`${store._id}/add-type`)
+        input.button(type="submit" value="Add Vegetable Type")
     div.types
       .type
         +type(t)

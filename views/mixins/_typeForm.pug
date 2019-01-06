@@ -1,0 +1,7 @@
+mixin typeForm(store = {})
+  form(action=`/${store._id ||''}/add-type` method="POST" class="card" enctype="multipart/form-data")
+
+    label(for="name") Name
+    input(type="text" name="name" id="name")
+
+    input(type="submit" value="Submit" class="button")

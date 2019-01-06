@@ -3,6 +3,7 @@ const router = express.Router();
 const storeController = require('../controllers/storeController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const typeController = require('../controllers/typeController');
 const commentController = require('../controllers/commentController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -20,14 +21,18 @@ router.post('/add',
   catchErrors(storeController.resize),
   catchErrors(storeController.createStore)
 );
-//edit
+
 router.post('/add/:id',
   storeController.upload,
   catchErrors(storeController.resize),
   catchErrors(storeController.updateStore)
 );
 
+//edit
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
+
+// Add Vegetable types
+router.get('/store/:id/add-type', typeController.addType);
 
 router.get('/store/:slug', catchErrors(storeController.viewStore));
 
@@ -60,6 +65,7 @@ router.get('/logout', authController.logout);
 router.get('/hearts', authController.isLoggedIn, catchErrors(storeController.getHearts));
 
 router.post('/comments/:id', authController.isLoggedIn, catchErrors(commentController.addComment));
+
 
 router.get('/top', catchErrors(storeController.getTopRating));
 

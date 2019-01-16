@@ -10,3 +10,10 @@ exports.addType = async (req, res) => {
   const store = await Store.findOne({ _id: req.params.id });
   res.render('addType', { title: `Add Type to ${store.name}`, store });
 }
+
+exports.createType = async (req, res) => {
+  const type = new Type(req.body);
+  await type.save();
+  console.log(req.body);
+  res.redirect('/');
+}

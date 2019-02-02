@@ -49,14 +49,16 @@ block content
     p #{store.description}
     h5 Growing Instructions
     p #{store.growingInstructions}
-    h5 Types
     if user
       a(href=`${store._id}/add-type`)
         input.button(type="submit" value="Add Vegetable Type")
-    div.types
-      .type
-        +type(t)
-    p Comments
+    if store.types.length > 0
+      h5 Types
+      div.types
+          .type
+            each t in store.types
+              +type(t)
+    h5 Comments
     if user
       input.button(type="submit" value="Add a comment or tip" onclick="window.location='#commentform'")
 

@@ -34,8 +34,8 @@ router.get('/stores/:id/edit', catchErrors(storeController.editStore));
 // Add Vegetable types
 router.get('/store/:id/add-type', typeController.addType);
 router.post('/store/:id/add-type',
-  //storeController.upload,
-  //catchErrors(storeController.resize),
+  typeController.upload,
+  catchErrors(typeController.resize),
   catchErrors(typeController.createType)
 );
 

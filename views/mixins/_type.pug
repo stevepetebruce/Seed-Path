@@ -1,27 +1,17 @@
-mixin type(t)
-
+mixin type(type)
   .vegetable
-    img.vegetable__artwork(src="https://source.unsplash.com/random/200x200?v=1")
+    img.vegetable__artwork(src=`/uploads/types/${type.photo  || 'default-type.jpg'}`)
     .vegetable__details
       .vegetable__title
-        h2 Title
+        h2= type.name
         .vegetable__vote
           p 👍 👎
       .vegetable__desc
-        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sed sint doloremque repellat, iste debitis.
+        p= type.description
       .vegetable__months
-        .vegetable__months--sow Sow
-        .vegetable__months--harvest Harvest
+        .vegetable__months--sow 
+          p= type.Sow
+        .vegetable__months--harvest 
+          p= type.Harvest
 
-  .vegetable
-    img.vegetable__artwork(src="https://source.unsplash.com/random/200x200?v=1")
-    .vegetable__details
-      .vegetable__title
-        h2 Title
-        .vegetable__vote
-          p 👍 👎
-      .vegetable__desc
-        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sed sint doloremque repellat, iste debitis.
-      .vegetable__months
-        .vegetable__months--sow Sow
-        .vegetable__months--harvest Harvest
+  

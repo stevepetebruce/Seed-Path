@@ -126,4 +126,10 @@ storeSchema.virtual('comments', {
   foreignField: 'store', // which field in the comment schema?
 })
 
+storeSchema.virtual('types', {
+  ref: 'Type',
+  localField: '_id',
+  foreignField: 'store'
+})
+
 module.exports = mongoose.model('Store', storeSchema);

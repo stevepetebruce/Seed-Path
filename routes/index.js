@@ -27,17 +27,23 @@ router.post('/add/:id',
   catchErrors(storeController.resize),
   catchErrors(storeController.updateStore)
 );
-
 //edit
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
 
 // Add Vegetable types
-router.get('/store/:id/add-type', typeController.addType);
-router.post('/store/:id/add-type',
+router.get('/store/:storeId/add-type', typeController.addType);
+router.post('/store/:storeId/add-type',
   typeController.upload,
   catchErrors(typeController.resize),
   catchErrors(typeController.createType)
 );
+router.get('/store/:storeId/add-type/:id', catchErrors(typeController.editType));
+router.post('/store/:storeId/add-type/:id', 
+  typeController.upload,
+  catchErrors(typeController.resize),
+  catchErrors(typeController.updateType)
+);
+
 
 router.get('/store/:slug', catchErrors(storeController.viewStore));
 

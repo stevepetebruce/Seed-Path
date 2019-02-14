@@ -1,6 +1,5 @@
 mixin typeForm(type = {})
-  form(class="card" action=`/store/${type._id ||''}/add-type` method="POST" enctype="multipart/form-data")
-
+  form(class="card" action=`/store/${type.store || store._id}/add-type/${type._id || ''}` method="POST" enctype="multipart/form-data")
     label(for="name") Name
     input(id="name" name="name" type="text" value=type.name)
 
@@ -29,6 +28,5 @@ mixin typeForm(type = {})
           .tag.tag__choice
             input(id=hchoice + "1" name="harvest" type="checkbox" value=hchoice checked=(harvesting.includes(hchoice)))
             label(for=hchoice + "1") #{hchoice}
-
-
+            
     input(class="button" type="submit" value="Submit")

@@ -8,6 +8,9 @@ mixin type(type)
           p 👍 👎
       .vegetable__desc
         p= type.description
+        if user
+          a(href=`/store/${type.store}/add-type/${type._id}`)
+            input.button(type="submit" value="Edit Vegetable Type")
       .vegetable__months
         .vegetable__months--sow 
           p= type.Sow

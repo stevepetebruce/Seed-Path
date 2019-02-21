@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const Store = mongoose.model('Store');
 const Type = mongoose.model('Type');
+const User = mongoose.model('User');
 const multer = require('multer'); // file upload
 const jimp = require('jimp'); // resize image
 const uuid = require('uuid'); // unique ids
@@ -74,5 +75,32 @@ exports.updateType = async (req, res) => {
   res.redirect(`/store/${typeUpdate.store}/add-type/${typeUpdate._id}`);
 }
 
+
+
+exports.heartStore = async (req, res) => {
+  const hearts = req.user.hearts.map(obj => obj.toString());
+  const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet'; // if hearts includes id remove it or add it
+  const user = await User.findByIdAndUpdate(req.user._id,
+    {[operator]: { hearts: req.params.id }}, // [operator] either $pull: or $addToSet:
+    { new: true }
+  );
+  res.json(user);
+}
+
+
+exports.getHearts = async (req, res) => {
+  // retrieve hearts
+  const hearts = await Type.find({
+    _id: { $in: req.user.hearts }
+  }
+  );
+  res.render('hearts', { title: 'Your Favourites', stores: hearts });
+}
+
+
+exports.getTopRating = async (req, res) => {
+  const stores = await Type.getTopRating();  // getTopRating() function in models/stores.js
+  res.render('topRating', { stores, title: 'Top Ratings' })
+}
 
 

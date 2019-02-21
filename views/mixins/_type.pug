@@ -5,7 +5,13 @@ mixin type(type)
       .vegetable__title
         h2= type.name
         .vegetable__vote
-          p 👍 👎
+          if user
+            .store__action.store__action--heart
+              form.heart(method="POST" action=`/api/types/${type._id}/heart`)
+                - const heartStrings = user.hearts.map(obj => obj.toString())
+                - const heartClass = heartStrings.includes(type._id.toString()) ? 'heart__button--hearted' : ''
+                button.heart__button(class=heartClass name="heart" type="submit")
+                  != h.icon('heart')
       .vegetable__desc
         p= type.description
         if user

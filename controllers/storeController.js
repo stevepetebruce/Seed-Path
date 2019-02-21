@@ -171,26 +171,6 @@ exports.searchStores = async (req, res) => {
   res.json(stores);
 }
 
-exports.heartStore = async (req, res) => {
-  const hearts = req.user.hearts.map(obj => obj.toString());
-  const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet'; // if hearts includes id remove it or add it
-  const user = await User.findByIdAndUpdate(req.user._id,
-    {[operator]: { hearts: req.params.id }}, // [operator] either $pull: or $addToSet:
-    { new: true }
-  );
-  res.json(user);
-}
-
-exports.getHearts = async (req, res) => {
-  // retrieve hearts
-  const hearts = await Store.find({
-    _id: { $in: req.user.hearts }
-  }
-  );
-  res.render('stores', { title: 'Your Favourites', stores: hearts });
-}
-
-
 exports.getTopRating = async (req, res) => {
   const stores = await Store.getTopRating();  // getTopRating() function in models/stores.js
   res.render('topRating', { stores, title: 'Top Ratings' })

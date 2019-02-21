@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_type
+
+block content
+  .inner
+    h2= title
+    each store in stores
+      +type(store)
+

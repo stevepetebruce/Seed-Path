@@ -14,13 +14,19 @@ mixin type(type)
                   != h.icon('heart')
       .vegetable__desc
         p= type.description
-        if user
-          a(href=`/store/${type.store}/add-type/${type._id}`)
-            input.button(type="submit" value="Edit Vegetable Type")
       .vegetable__months
         .vegetable__months--sow 
-          p= type.Sow
+          - const sowing = type.sow || []
+          .month.month__choice
+            each sow in sowing
+              b #{sow}
         .vegetable__months--harvest 
-          p= type.Harvest
+          - const harvesting = type.harvest || []
+          .month.month__choice
+            each harvest in harvesting
+              b #{harvest}
+      if user
+        a(href=`/store/${type.store}/add-type/${type._id}`)
+          input.button(type="submit" value="Edit Vegetable Type")
 
   

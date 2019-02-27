@@ -98,9 +98,6 @@ exports.getHearts = async (req, res) => {
 }
 
 
-exports.getTopRating = async (req, res) => {
-  const stores = await Type.getTopRating();  // getTopRating() function in models/stores.js
-  res.render('topRating', { stores, title: 'Top Ratings' })
-}
+
 
 
